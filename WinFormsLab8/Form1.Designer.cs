@@ -1,14 +1,14 @@
-﻿namespace WinFormsLab8
+﻿namespace TextProcessingApp
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -23,31 +23,78 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.inputFileLabel = new System.Windows.Forms.Label();
+            this.outputFileLabel = new System.Windows.Forms.Label();
+            this.inputFileTextBox = new System.Windows.Forms.TextBox();
+            this.outputFileTextBox = new System.Windows.Forms.TextBox();
+            this.processButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // inputFileLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(180, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Lab 8";
+            this.inputFileLabel.AutoSize = true;
+            this.inputFileLabel.Location = new System.Drawing.Point(41, 58);
+            this.inputFileLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.inputFileLabel.Name = "inputFileLabel";
+            this.inputFileLabel.Size = new System.Drawing.Size(128, 25);
+            this.inputFileLabel.TabIndex = 0;
+            this.inputFileLabel.Text = "Input File Path:";
             // 
-            // Form1
+            // outputFileLabel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.outputFileLabel.AutoSize = true;
+            this.outputFileLabel.Location = new System.Drawing.Point(41, 127);
+            this.outputFileLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.outputFileLabel.Name = "outputFileLabel";
+            this.outputFileLabel.Size = new System.Drawing.Size(143, 25);
+            this.outputFileLabel.TabIndex = 1;
+            this.outputFileLabel.Text = "Output File Path:";
+            // 
+            // inputFileTextBox
+            // 
+            this.inputFileTextBox.Location = new System.Drawing.Point(200, 53);
+            this.inputFileTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.inputFileTextBox.Name = "inputFileTextBox";
+            this.inputFileTextBox.Size = new System.Drawing.Size(404, 31);
+            this.inputFileTextBox.TabIndex = 2;
+            // 
+            // outputFileTextBox
+            // 
+            this.outputFileTextBox.Location = new System.Drawing.Point(200, 122);
+            this.outputFileTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.outputFileTextBox.Name = "outputFileTextBox";
+            this.outputFileTextBox.Size = new System.Drawing.Size(404, 31);
+            this.outputFileTextBox.TabIndex = 3;
+            // 
+            // processButton
+            // 
+            this.processButton.Location = new System.Drawing.Point(200, 190);
+            this.processButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.processButton.Name = "processButton";
+            this.processButton.Size = new System.Drawing.Size(107, 38);
+            this.processButton.TabIndex = 4;
+            this.processButton.Text = "Process";
+            this.processButton.UseVisualStyleBackColor = true;
+            this.processButton.Click += new System.EventHandler(this.processButton_Click);
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(785, 310);
+            this.Controls.Add(this.processButton);
+            this.Controls.Add(this.outputFileTextBox);
+            this.Controls.Add(this.inputFileTextBox);
+            this.Controls.Add(this.outputFileLabel);
+            this.Controls.Add(this.inputFileLabel);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Name = "MainForm";
+            this.Text = "Text Processing";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -55,6 +102,10 @@
 
         #endregion
 
-        private Label label1;
+        private System.Windows.Forms.Label inputFileLabel;
+        private System.Windows.Forms.Label outputFileLabel;
+        private System.Windows.Forms.TextBox inputFileTextBox;
+        private System.Windows.Forms.TextBox outputFileTextBox;
+        private System.Windows.Forms.Button processButton;
     }
 }
