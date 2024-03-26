@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace Lab8CSharp
@@ -64,7 +65,7 @@ namespace Lab8CSharp
 
             MatchCollection matches = regex.Matches(text);
 
-            string outputFilePath = "output.txt";
+            string outputFilePath = "output_task1.txt";
             using (StreamWriter writer = new StreamWriter(outputFilePath, false)) // Открываем файл для записи, перезаписывая содержимое
             {
                 writer.WriteLine("Found email addresses:");
@@ -82,6 +83,7 @@ namespace Lab8CSharp
 
         static void task2()
         {
+            Console.Write("Task 2\n");
             string inputFilePath = "input.txt";
             string text = File.ReadAllText(inputFilePath);
 
@@ -99,16 +101,77 @@ namespace Lab8CSharp
             Console.WriteLine("Operation completed. Results written to output_task2.txt");
         }
 
+        static string RepChar(string[] words)
+        {
+            string MostRepChar = string.Empty;
+            int maxRepChar = 0;
+
+            foreach (string word in words)
+            {
+                int count = 0; 
+                char firstChar = word[0]; 
+                char lastChar = word[word.Length - 1]; 
+
+                if (firstChar == lastChar)
+                {
+                    foreach (char c in word)
+                    {
+                        if (c == firstChar)
+                        {
+                            count++;
+                        }
+                    }
+
+                    if (count > maxRepChar)
+                    {
+                        maxRepChar = count;
+                        MostRepChar = word;
+                    }
+                }
+            }
+
+            return MostRepChar;
+        }
+
         static void task3()
         {
-            Console.Write("Task 3");
+            Console.Write("Task 3\n");
+            string inputFilePath = "input.txt";
+            string[] words = File.ReadAllText(inputFilePath).Split(new[] { ' ', ',', '.', ';', ':', '-', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
+            string MostRepChar = RepChar(words);
+
+            string outputFilePath = "output_task3.txt";
+            File.WriteAllText(outputFilePath, MostRepChar);
+
+            Console.WriteLine($"Result has been written to {outputFilePath}");
         }
         static void task4()
         {
-            Console.Write("Task 4");
+            Console.WriteLine("Task 4");
+            string inputFilePath = "input.txt";
+            string text = File.ReadAllText(inputFilePath);
 
+            // Розділити текст на слова
+            string[] separators = { " ", ",", ".", ";", ":", "-", "\n", "\r", "\t" };
+            string[] words = text.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+
+            List<string> matchingWords = new List<string>();
+
+            foreach (string word in words)
+            {
+                if (word.Length > 1 && word[0] == word[word.Length - 1])
+                {
+                    matchingWords.Add(word);
+                }
+            }
+
+            string outputFilePath = "output_task4.txt";
+            File.WriteAllLines(outputFilePath, matchingWords);
+
+            Console.WriteLine($"Operation completed. Results written to {outputFilePath}");
         }
+
         static void task5()
         {
             Console.Write("Task 5");
