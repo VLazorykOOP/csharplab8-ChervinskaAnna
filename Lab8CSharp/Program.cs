@@ -186,11 +186,13 @@ namespace Lab8CSharp
 
         static void task5()
         {
+            Console.WriteLine("Task 5\n");
             string studentName = "Chervinska";
+            string folder1Path = $"D:\\temp\\{studentName}1";
+            string folder2Path = $"D:\\temp\\{studentName}2";
+            string allFolderPath = $"D:\\temp\\ALL";
 
-            string folder1Path = $"C:\\temp\\{studentName}1";
-            string folder2Path = $"C:\\temp\\{studentName}2";
-
+            // Task1
             Directory.CreateDirectory(folder1Path);
             Directory.CreateDirectory(folder2Path);
 
@@ -198,51 +200,49 @@ namespace Lab8CSharp
             string t1FilePath = Path.Combine(folder1Path, "t1.txt");
             string t2FilePath = Path.Combine(folder1Path, "t2.txt");
 
-            string t1Text = "Шевченко Степан iванович, 2001 року народження, мiсце проживання м. Суми";
-            string t2Text = "Комар Сергiй Федорович, 2000 року народження, мiсце проживання м. Київ";
+            string t1Text = "Шевченко Степан Іванович, 2001 року народження, місце проживання м. Суми";
+            string t2Text = "Комар Сергій Федорович, 2000 року народження, місце проживання м. Київ";
 
             File.WriteAllText(t1FilePath, t1Text);
             File.WriteAllText(t2FilePath, t2Text);
 
             // Task3
             string t3FilePath = Path.Combine(folder2Path, "t3.txt");
-
-            File.AppendAllText(t3FilePath, File.ReadAllText(t1FilePath));
-            File.AppendAllText(t3FilePath, File.ReadAllText(t2FilePath));
+            File.WriteAllText(t3FilePath, File.ReadAllText(t1FilePath) + "\n" + File.ReadAllText(t2FilePath));
 
             // Task4
             PrintFileInfo(t1FilePath);
             PrintFileInfo(t2FilePath);
             PrintFileInfo(t3FilePath);
+
             // Task5
-            string movet2FilePath = Path.Combine(folder2Path, "t2.txt");
-            if (File.Exists(movet2FilePath))
+            string moveT2FilePath = Path.Combine(folder2Path, "t2.txt");
+            if (File.Exists(moveT2FilePath))
             {
-                File.Delete(movet2FilePath); // Удаляем существующий файл
+                File.Delete(moveT2FilePath);
             }
-            File.Move(t2FilePath, movet2FilePath); // Перемещаем файл
+            File.Move(t2FilePath, moveT2FilePath);
 
             // Task6
-            string moveT1FilePath = Path.Combine(folder2Path, "t1.txt");
-            File.Copy(t1FilePath, moveT1FilePath, true); // Перезаписываем существующий файл
+            string copyT1FilePath = Path.Combine(folder2Path, "t1.txt");
+            File.Copy(t1FilePath, copyT1FilePath);
 
             // Task7
-            string allFolderPath = $"C:\\temp\\ALL";
             if (Directory.Exists(allFolderPath))
             {
-                Directory.Delete(allFolderPath, true); // Удаляем существующую папку
+                Directory.Delete(allFolderPath, true);
             }
-            Directory.Move(folder2Path, allFolderPath);
-            Directory.Delete(folder1Path, true);
+            Directory.Move(folder1Path, allFolderPath);
 
             // Task8
-            Console.WriteLine("\nFiles in ALL directory:");
+            Console.WriteLine("\nFiles in All directory:");
             string[] filesInAll = Directory.GetFiles(allFolderPath);
             foreach (string file in filesInAll)
             {
                 PrintFileInfo(file);
             }
         }
+
     }
 }
 
