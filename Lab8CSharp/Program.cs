@@ -27,7 +27,7 @@ namespace Lab8CSharp
                 Console.Write("Enter number of task ");
                 isValidChoice = int.TryParse(Console.ReadLine(), out choice);
 
-                if (!isValidChoice || choice < 1 || choice > 4)
+                if (!isValidChoice || choice < 1 || choice > 7)
                 {
                     Console.WriteLine("This task not exist");
                     isValidChoice = false;
@@ -148,7 +148,7 @@ namespace Lab8CSharp
         }
         static void task4()
         {
-            Console.WriteLine("Task 4");
+            Console.WriteLine("Task 4\n");
             string inputFilePath = "input.txt";
             string text = File.ReadAllText(inputFilePath);
 
@@ -172,10 +172,78 @@ namespace Lab8CSharp
             Console.WriteLine($"Operation completed. Results written to {outputFilePath}");
         }
 
+        static void PrintFileInfo(string filePath)
+        {
+            FileInfo fileInfo = new FileInfo(filePath);
+            Console.WriteLine($"File Name: {fileInfo.Name}");
+            Console.WriteLine($"Directory: {fileInfo.DirectoryName}");
+            Console.WriteLine($"Size (bytes): {fileInfo.Length}");
+            Console.WriteLine($"Creation Time: {fileInfo.CreationTime}");
+            Console.WriteLine($"Last Access Time: {fileInfo.LastAccessTime}");
+            Console.WriteLine($"Last Write Time: {fileInfo.LastWriteTime}");
+            Console.WriteLine();
+        }
+
         static void task5()
         {
-            Console.Write("Task 5");
+            string studentName = "Chervinska";
 
+            string folder1Path = $"C:\\temp\\{studentName}1";
+            string folder2Path = $"C:\\temp\\{studentName}2";
+
+            Directory.CreateDirectory(folder1Path);
+            Directory.CreateDirectory(folder2Path);
+
+            // Task2
+            string t1FilePath = Path.Combine(folder1Path, "t1.txt");
+            string t2FilePath = Path.Combine(folder1Path, "t2.txt");
+
+            string t1Text = "Шевченко Степан iванович, 2001 року народження, мiсце проживання м. Суми";
+            string t2Text = "Комар Сергiй Федорович, 2000 року народження, мiсце проживання м. Київ";
+
+            File.WriteAllText(t1FilePath, t1Text);
+            File.WriteAllText(t2FilePath, t2Text);
+
+            // Task3
+            string t3FilePath = Path.Combine(folder2Path, "t3.txt");
+
+            File.AppendAllText(t3FilePath, File.ReadAllText(t1FilePath));
+            File.AppendAllText(t3FilePath, File.ReadAllText(t2FilePath));
+
+            // Task4
+            PrintFileInfo(t1FilePath);
+            PrintFileInfo(t2FilePath);
+            PrintFileInfo(t3FilePath);
+            // Task5
+            string movet2FilePath = Path.Combine(folder2Path, "t2.txt");
+            if (File.Exists(movet2FilePath))
+            {
+                File.Delete(movet2FilePath); // Удаляем существующий файл
+            }
+            File.Move(t2FilePath, movet2FilePath); // Перемещаем файл
+
+            // Task6
+            string moveT1FilePath = Path.Combine(folder2Path, "t1.txt");
+            File.Copy(t1FilePath, moveT1FilePath, true); // Перезаписываем существующий файл
+
+            // Task7
+            string allFolderPath = $"C:\\temp\\ALL";
+            if (Directory.Exists(allFolderPath))
+            {
+                Directory.Delete(allFolderPath, true); // Удаляем существующую папку
+            }
+            Directory.Move(folder2Path, allFolderPath);
+            Directory.Delete(folder1Path, true);
+
+            // Task8
+            Console.WriteLine("\nFiles in ALL directory:");
+            string[] filesInAll = Directory.GetFiles(allFolderPath);
+            foreach (string file in filesInAll)
+            {
+                PrintFileInfo(file);
+            }
         }
     }
 }
+
+
