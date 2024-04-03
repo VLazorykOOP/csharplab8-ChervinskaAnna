@@ -61,7 +61,7 @@ namespace Lab8CSharp
             string inputFilePath = "input.txt";
             string text = File.ReadAllText(inputFilePath);
 
-            Regex regex = new Regex(@"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b");
+            Regex regex = new Regex(@"\b[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}\b");
 
             MatchCollection matches = regex.Matches(text);
 
